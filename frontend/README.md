@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Water Quality Frontend
 
-## Getting Started
+The Next.js frontend application for the water quality monitoring system. This application provides interactive mapping, data visualization, search functionality, and real-time chatbot assistance for water quality analysis.
 
-First, run the development server:
+## What's inside
+
+- MapBox GL JS integration for interactive mapping with water quality monitoring stations
+- Chart.js implementation for historical data visualization and trend analysis
+- Search component with autocomplete functionality for location discovery
+- WebSocket chatbot integration for real-time water quality assistance
+- TypeScript implementation for type-safe development and enhanced code reliability
+
+## Getting it running
+
+Install dependencies and start the development server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application will be available at [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Main components
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `MapComponent.tsx` - Interactive map component with monitoring station markers
+- `InfoPanel.tsx` - Information panel with location details and search functionality
+- `ChartComponent.tsx` - Historical data visualization component
+- `ChatBot.tsx` - WebSocket-based chatbot interface
+- `SearchComponent.tsx` - Autocomplete search component for location discovery
 
-## Learn More
+## Environment setup
 
-To learn more about Next.js, take a look at the following resources:
+A MapBox access token is required for map functionality. Create a `.env.local` file in the frontend directory:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=your_token_here
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+You can obtain a free MapBox access token from [MapBox](https://www.mapbox.com/) for development and moderate usage.
 
-## Deploy on Vercel
+## Data structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Water quality data is sourced from `/public/data/` directory and backend API endpoints. Each monitoring location includes geographical coordinates, measurement data, and timestamps for historical tracking.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment
+
+This is a standard Next.js application that can be deployed to various hosting platforms. For production builds:
+
+```bash
+npm run build
+```
+
+The application is optimized for deployment on platforms like Vercel, Netlify, or similar Next.js-compatible hosting services.
+
