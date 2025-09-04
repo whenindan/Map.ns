@@ -27,29 +27,29 @@ export default function ChatBot() {
 
   const initializeWebSocket = () => {
     if (isConnecting) return
-    
+
     setIsConnecting(true)
-    
+
     try {
       wsRef.current = new WebSocket('wss://nuocgpt-chat-bl9fc.ondigitalocean.app/ws/chat')
-      
+
       wsRef.current.onopen = () => {
         setIsConnected(true)
         setIsConnecting(false)
         appendMessage('system', 'Connected to the chatbot')
       }
-      
+
       wsRef.current.onmessage = (event) => {
         appendMessage('bot', event.data)
       }
-      
+
       wsRef.current.onclose = () => {
         setIsConnected(false)
         setIsConnecting(false)
         appendMessage('system', 'Disconnected from the chatbot. Attempting to reconnect...')
         setTimeout(initializeWebSocket, 3000)
       }
-      
+
       wsRef.current.onerror = () => {
         setIsConnected(false)
         setIsConnecting(false)
@@ -117,7 +117,7 @@ export default function ChatBot() {
       overflow: 'hidden'
     }}>
       {/* Header */}
-      <div 
+      <div
         style={{
           display: 'flex',
           alignItems: 'center',
@@ -140,9 +140,9 @@ export default function ChatBot() {
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <div style={{ 
-            width: '8px', 
-            height: '8px', 
+          <div style={{
+            width: '8px',
+            height: '8px',
             backgroundColor: isConnected ? '#10b981' : '#ef4444',
             borderRadius: '50%',
             animation: isConnected ? 'none' : 'pulse 2s infinite'
@@ -163,12 +163,12 @@ export default function ChatBot() {
           alignItems: 'center',
           justifyContent: 'center'
         }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)'
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = 'transparent'
-        }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)'
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = 'transparent'
+          }}
         >
           {isExpanded ? '▼' : '▲'}
         </button>
@@ -176,9 +176,9 @@ export default function ChatBot() {
 
       {/* Chat Body */}
       {isExpanded && (
-        <div style={{ 
-          display: 'flex', 
-          flexDirection: 'column', 
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
           height: '384px',
           backgroundColor: 'white'
         }}>
@@ -194,11 +194,11 @@ export default function ChatBot() {
           }}>
             {messages.length === 0 ? (
               <div style={{
-                                  textAlign: 'center',
-                  color: '#64748b',
-                  fontSize: '14px',
-                  padding: '32px 16px',
-                  fontWeight: '500'
+                textAlign: 'center',
+                color: '#64748b',
+                fontSize: '14px',
+                padding: '32px 16px',
+                fontWeight: '500'
               }}>
                 <div style={{ fontSize: '24px', marginBottom: '8px' }}>🌊</div>
                 <div>Ask me about water quality!</div>
@@ -218,8 +218,7 @@ export default function ChatBot() {
                   }}
                 >
                   {message.type !== 'user' && (
-                    <div style={{ 
-                      fontSize: '20px', 
+                    <div style={{
                       marginRight: '8px',
                       marginTop: '2px',
                       width: '28px',
@@ -238,22 +237,22 @@ export default function ChatBot() {
                   <div style={{
                     maxWidth: '80%',
                     padding: '12px 16px',
-                    borderRadius: message.type === 'user' 
-                      ? '20px 20px 6px 20px' 
+                    borderRadius: message.type === 'user'
+                      ? '20px 20px 6px 20px'
                       : '20px 20px 20px 6px',
                     fontSize: '14px',
                     lineHeight: '1.4',
                     wordWrap: 'break-word',
-                    backgroundColor: message.type === 'user' 
-                      ? '#007cbf' 
+                    backgroundColor: message.type === 'user'
+                      ? '#007cbf'
                       : message.type === 'system'
-                      ? '#fef3c7'
-                      : 'white',
-                    color: message.type === 'user' 
-                      ? 'white' 
+                        ? '#fef3c7'
+                        : 'white',
+                    color: message.type === 'user'
+                      ? 'white'
                       : message.type === 'system'
-                      ? '#92400e'
-                      : '#374151',
+                        ? '#92400e'
+                        : '#374151',
                     border: message.type === 'bot' ? '1px solid #e5e7eb' : 'none',
                     boxShadow: message.type !== 'user' ? '0 2px 4px rgba(0, 0, 0, 0.1)' : 'none',
                     fontWeight: '500'
@@ -261,8 +260,7 @@ export default function ChatBot() {
                     {message.message}
                   </div>
                   {message.type === 'user' && (
-                    <div style={{ 
-                      fontSize: '20px', 
+                    <div style={{
                       marginLeft: '8px',
                       marginTop: '2px',
                       width: '28px',

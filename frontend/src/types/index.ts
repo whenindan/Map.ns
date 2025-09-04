@@ -7,7 +7,7 @@ export interface WaterQualityData {
     name: string
     value: number | string
     unit: string
-  } | string | [number, number] | 'Unknown'
+  } | string | [number, number] | 'Unknown' | undefined
 }
 
 export interface LocationData {
