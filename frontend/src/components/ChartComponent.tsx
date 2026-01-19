@@ -36,13 +36,13 @@ export default function ChartComponent({ historicalData, selectedMeasurementInde
 
   if (!historicalData || !historicalData.measurements || historicalData.measurements.length === 0) {
     return (
-      <div style={{ 
-        width: '100%', 
-        height: '300px', 
+      <div style={{
+        width: '100%',
+        height: '300px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        color: '#9ca3af',
+        color: '#666666',
         fontSize: '14px',
         fontWeight: '500'
       }}>
@@ -54,7 +54,7 @@ export default function ChartComponent({ historicalData, selectedMeasurementInde
   const prepareChartData = () => {
     if (Array.isArray(historicalData.measurements) && historicalData.measurements.length > 0) {
       const selectedMeasurement = historicalData.measurements[selectedMeasurementIndex]
-      
+
       if (selectedMeasurement && selectedMeasurement.data && Array.isArray(selectedMeasurement.data)) {
         // Sort data by date
         const sortedData = [...selectedMeasurement.data].sort((a, b) => {
@@ -71,17 +71,17 @@ export default function ChartComponent({ historicalData, selectedMeasurementInde
           datasets: [{
             label: selectedMeasurement.type,
             data: values,
-            borderColor: '#007cbf',
-            backgroundColor: 'rgba(0, 124, 191, 0.08)',
-            borderWidth: 2.5,
+            borderColor: '#ffffff',
+            backgroundColor: 'rgba(255, 255, 255, 0.05)',
+            borderWidth: 2,
             tension: 0.4,
             pointRadius: 0,
             pointHoverRadius: 6,
-            pointBackgroundColor: '#007cbf',
-            pointBorderColor: '#ffffff',
+            pointBackgroundColor: '#ffffff',
+            pointBorderColor: '#000000',
             pointBorderWidth: 2,
-            pointHoverBackgroundColor: '#007cbf',
-            pointHoverBorderColor: '#ffffff',
+            pointHoverBackgroundColor: '#ffffff',
+            pointHoverBorderColor: '#000000',
             pointHoverBorderWidth: 3,
             fill: true
           }]
@@ -111,10 +111,10 @@ export default function ChartComponent({ historicalData, selectedMeasurementInde
         display: false
       },
       tooltip: {
-        backgroundColor: 'rgba(255, 255, 255, 0.95)',
-        titleColor: '#374151',
-        bodyColor: '#374151',
-        borderColor: '#e5e7eb',
+        backgroundColor: 'rgba(26, 26, 26, 0.95)',
+        titleColor: '#ffffff',
+        bodyColor: '#e5e5e5',
+        borderColor: '#404040',
         borderWidth: 1,
         cornerRadius: 8,
         displayColors: false,
@@ -149,7 +149,7 @@ export default function ChartComponent({ historicalData, selectedMeasurementInde
           display: false
         },
         ticks: {
-          color: '#6b7280',
+          color: '#a3a3a3',
           font: {
             size: 11,
             weight: 'normal'
@@ -158,11 +158,11 @@ export default function ChartComponent({ historicalData, selectedMeasurementInde
           padding: 8
         },
         grid: {
-          color: 'rgba(229, 231, 235, 0.8)',
+          color: 'rgba(64, 64, 64, 0.5)',
           lineWidth: 1
         },
         border: {
-          color: '#e5e7eb',
+          color: '#404040',
           width: 1
         }
       },
@@ -172,7 +172,7 @@ export default function ChartComponent({ historicalData, selectedMeasurementInde
           display: false
         },
         ticks: {
-          color: '#6b7280',
+          color: '#a3a3a3',
           font: {
             size: 11,
             weight: 'normal'
@@ -180,11 +180,11 @@ export default function ChartComponent({ historicalData, selectedMeasurementInde
           padding: 8
         },
         grid: {
-          color: 'rgba(229, 231, 235, 0.8)',
+          color: 'rgba(64, 64, 64, 0.5)',
           lineWidth: 1
         },
         border: {
-          color: '#e5e7eb',
+          color: '#404040',
           width: 1
         }
       }
@@ -205,13 +205,13 @@ export default function ChartComponent({ historicalData, selectedMeasurementInde
 
   if (chartData.datasets.length === 0) {
     return (
-      <div style={{ 
-        width: '100%', 
-        height: '300px', 
+      <div style={{
+        width: '100%',
+        height: '300px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        color: '#9ca3af',
+        color: '#666666',
         fontSize: '14px',
         fontWeight: '500'
       }}>
@@ -221,8 +221,8 @@ export default function ChartComponent({ historicalData, selectedMeasurementInde
   }
 
   return (
-    <div style={{ 
-      width: '100%', 
+    <div style={{
+      width: '100%',
       height: '280px',
       position: 'relative'
     }}>

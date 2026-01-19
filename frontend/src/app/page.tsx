@@ -84,18 +84,18 @@ export default function Home() {
   }
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen" style={{ backgroundColor: '#000000' }}>
       {/* Map Container - 75% */}
       <div className="w-3/4 h-full">
-        <MapComponent 
+        <MapComponent
           markers={markers}
           onMarkerClick={handleMarkerClick}
         />
       </div>
 
       {/* Info Panel - 25% */}
-      <div className="w-1/4 h-full bg-gray-50 border-l border-gray-200">
-        <InfoPanel 
+      <div className="w-1/4 h-full" style={{ backgroundColor: '#0a0a0a', borderLeft: '1px solid #262626' }}>
+        <InfoPanel
           selectedLocation={selectedLocation}
           markers={markers}
           onLocationSelect={handleMarkerClick}

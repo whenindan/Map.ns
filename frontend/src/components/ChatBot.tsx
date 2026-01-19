@@ -88,33 +88,21 @@ export default function ChatBot() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
 
-  const getMessageIcon = (type: 'user' | 'bot' | 'system') => {
-    switch (type) {
-      case 'user':
-        return '👤'
-      case 'bot':
-        return '🤖'
-      case 'system':
-        return '⚙️'
-      default:
-        return ''
-    }
-  }
-
   return (
     <div style={{
       position: 'fixed',
       bottom: '24px',
       right: '24px',
       width: '360px',
-      backgroundColor: 'white',
-      border: 'none',
-      borderRadius: '20px',
-      boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+      backgroundColor: '#1a1a1a',
+      border: '1px solid #404040',
+      borderRadius: '12px',
+      boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3)',
       zIndex: 10000,
       transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
       height: isExpanded ? '440px' : '56px',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      fontFamily: '"Open Sans", sans-serif'
     }}>
       {/* Header */}
       <div
@@ -123,41 +111,35 @@ export default function ChatBot() {
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: '16px 20px',
-          background: 'linear-gradient(135deg, #007cbf 0%, #0056b3 100%)',
+          backgroundColor: '#000000',
           color: 'white',
-          borderRadius: '20px 20px 0 0',
+          borderRadius: '12px 12px 0 0',
           cursor: 'pointer',
           fontSize: '15px',
           fontWeight: '600',
-          transition: 'all 0.2s ease'
+          transition: 'all 0.2s ease',
+          borderBottom: '1px solid #404040'
         }}
         onClick={() => setIsExpanded(!isExpanded)}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.transform = 'translateY(-1px)'
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.transform = 'translateY(0)'
-        }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <div style={{
             width: '8px',
             height: '8px',
-            backgroundColor: isConnected ? '#10b981' : '#ef4444',
+            backgroundColor: isConnected ? '#ffffff' : '#666666',
             borderRadius: '50%',
-            animation: isConnected ? 'none' : 'pulse 2s infinite'
+            transition: 'background-color 0.3s ease'
           }}></div>
-          <span style={{ fontSize: '16px' }}>💬</span>
           <span>Water Quality Assistant</span>
         </div>
         <button style={{
           backgroundColor: 'transparent',
           border: 'none',
           color: 'white',
-          fontSize: '18px',
+          fontSize: '14px',
           cursor: 'pointer',
-          padding: '4px',
-          borderRadius: '6px',
+          padding: '4px 8px',
+          borderRadius: '4px',
           transition: 'all 0.2s ease',
           display: 'flex',
           alignItems: 'center',
@@ -170,7 +152,7 @@ export default function ChatBot() {
             e.currentTarget.style.backgroundColor = 'transparent'
           }}
         >
-          {isExpanded ? '▼' : '▲'}
+          {isExpanded ? '−' : '+'}
         </button>
       </div>
 
@@ -180,30 +162,31 @@ export default function ChatBot() {
           display: 'flex',
           flexDirection: 'column',
           height: '384px',
-          backgroundColor: 'white'
+          backgroundColor: '#1a1a1a'
         }}>
           {/* Messages */}
           <div style={{
             flex: 1,
             overflowY: 'auto',
             padding: '16px',
-            backgroundColor: '#f8fafc',
+            backgroundColor: '#0a0a0a',
             maxHeight: '304px',
             scrollbarWidth: 'thin',
-            scrollbarColor: '#cbd5e1 #f1f5f9'
+            scrollbarColor: '#404040 #1a1a1a'
           }}>
             {messages.length === 0 ? (
               <div style={{
                 textAlign: 'center',
-                color: '#64748b',
+                color: '#666666',
                 fontSize: '14px',
                 padding: '32px 16px',
                 fontWeight: '500'
               }}>
-                <div style={{ fontSize: '24px', marginBottom: '8px' }}>🌊</div>
-                <div>Ask me about water quality!</div>
-                <div style={{ fontSize: '12px', marginTop: '4px', color: '#94a3b8' }}>
-                  I can help with water analysis data
+                <div style={{ fontSize: '16px', marginBottom: '12px', color: '#ffffff' }}>
+                  Water Quality Assistant
+                </div>
+                <div style={{ fontSize: '13px', color: '#666666' }}>
+                  Ask me about water quality data and analysis
                 </div>
               </div>
             ) : (
@@ -221,41 +204,35 @@ export default function ChatBot() {
                     <div style={{
                       marginRight: '8px',
                       marginTop: '2px',
-                      width: '28px',
-                      height: '28px',
-                      backgroundColor: message.type === 'bot' ? '#007cbf' : '#f59e0b',
+                      width: '6px',
+                      height: '6px',
+                      backgroundColor: message.type === 'bot' ? '#ffffff' : '#666666',
                       borderRadius: '50%',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '14px',
-                      flexShrink: 0
+                      flexShrink: 0,
+                      alignSelf: 'flex-start',
+                      marginTop: '8px'
                     }}>
-                      {getMessageIcon(message.type)}
                     </div>
                   )}
                   <div style={{
                     maxWidth: '80%',
-                    padding: '12px 16px',
-                    borderRadius: message.type === 'user'
-                      ? '20px 20px 6px 20px'
-                      : '20px 20px 20px 6px',
+                    padding: '10px 14px',
+                    borderRadius: '8px',
                     fontSize: '14px',
-                    lineHeight: '1.4',
+                    lineHeight: '1.5',
                     wordWrap: 'break-word',
                     backgroundColor: message.type === 'user'
-                      ? '#007cbf'
+                      ? '#ffffff'
                       : message.type === 'system'
-                        ? '#fef3c7'
-                        : 'white',
+                        ? '#262626'
+                        : '#1a1a1a',
                     color: message.type === 'user'
-                      ? 'white'
+                      ? '#000000'
                       : message.type === 'system'
-                        ? '#92400e'
-                        : '#374151',
-                    border: message.type === 'bot' ? '1px solid #e5e7eb' : 'none',
-                    boxShadow: message.type !== 'user' ? '0 2px 4px rgba(0, 0, 0, 0.1)' : 'none',
-                    fontWeight: '500'
+                        ? '#a3a3a3'
+                        : '#e5e5e5',
+                    border: message.type !== 'user' ? '1px solid #404040' : 'none',
+                    fontWeight: '400'
                   }}>
                     {message.message}
                   </div>
@@ -263,17 +240,14 @@ export default function ChatBot() {
                     <div style={{
                       marginLeft: '8px',
                       marginTop: '2px',
-                      width: '28px',
-                      height: '28px',
-                      backgroundColor: '#10b981',
+                      width: '6px',
+                      height: '6px',
+                      backgroundColor: '#ffffff',
                       borderRadius: '50%',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '14px',
-                      flexShrink: 0
+                      flexShrink: 0,
+                      alignSelf: 'flex-start',
+                      marginTop: '8px'
                     }}>
-                      {getMessageIcon(message.type)}
                     </div>
                   )}
                 </div>
@@ -285,9 +259,9 @@ export default function ChatBot() {
           {/* Input */}
           <div style={{
             padding: '12px 16px',
-            borderTop: '1px solid #e5e7eb',
-            backgroundColor: 'white',
-            borderRadius: '0 0 20px 20px'
+            borderTop: '1px solid #404040',
+            backgroundColor: '#1a1a1a',
+            borderRadius: '0 0 12px 12px'
           }}>
             <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
               <input
@@ -298,22 +272,22 @@ export default function ChatBot() {
                 placeholder="Type your message..."
                 style={{
                   flex: 1,
-                  padding: '12px 16px',
-                  border: '2px solid #e5e7eb',
-                  borderRadius: '25px',
+                  padding: '10px 14px',
+                  border: '1px solid #404040',
+                  borderRadius: '8px',
                   fontSize: '14px',
                   outline: 'none',
-                  backgroundColor: 'white',
-                  color: '#374151',
+                  backgroundColor: '#0a0a0a',
+                  color: '#ffffff',
                   transition: 'all 0.2s ease',
-                  fontWeight: '500'
+                  fontWeight: '400'
                 }}
                 onFocus={(e) => {
-                  e.currentTarget.style.borderColor = '#007cbf'
-                  e.currentTarget.style.boxShadow = '0 0 0 3px rgba(0, 124, 191, 0.1)'
+                  e.currentTarget.style.borderColor = '#666666'
+                  e.currentTarget.style.boxShadow = '0 0 0 2px rgba(255, 255, 255, 0.1)'
                 }}
                 onBlur={(e) => {
-                  e.currentTarget.style.borderColor = '#e5e7eb'
+                  e.currentTarget.style.borderColor = '#404040'
                   e.currentTarget.style.boxShadow = 'none'
                 }}
                 disabled={!isConnected}
@@ -322,35 +296,29 @@ export default function ChatBot() {
                 onClick={sendMessage}
                 disabled={!isConnected || !inputMessage.trim()}
                 style={{
-                  padding: '12px',
-                  width: '44px',
-                  height: '44px',
-                  backgroundColor: isConnected && inputMessage.trim() ? '#007cbf' : '#cbd5e1',
-                  color: 'white',
+                  padding: '10px 16px',
+                  backgroundColor: isConnected && inputMessage.trim() ? '#ffffff' : '#404040',
+                  color: isConnected && inputMessage.trim() ? '#000000' : '#666666',
                   border: 'none',
-                  borderRadius: '50%',
+                  borderRadius: '8px',
                   cursor: isConnected && inputMessage.trim() ? 'pointer' : 'not-allowed',
-                  fontSize: '16px',
+                  fontSize: '14px',
                   transition: 'all 0.2s ease',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  fontWeight: '600',
                   flexShrink: 0
                 }}
                 onMouseEnter={(e) => {
                   if (isConnected && inputMessage.trim()) {
-                    e.currentTarget.style.backgroundColor = '#0056b3'
-                    e.currentTarget.style.transform = 'scale(1.05)'
+                    e.currentTarget.style.backgroundColor = '#e5e5e5'
                   }
                 }}
                 onMouseLeave={(e) => {
                   if (isConnected && inputMessage.trim()) {
-                    e.currentTarget.style.backgroundColor = '#007cbf'
-                    e.currentTarget.style.transform = 'scale(1)'
+                    e.currentTarget.style.backgroundColor = '#ffffff'
                   }
                 }}
               >
-                ➤
+                Send
               </button>
             </div>
           </div>
@@ -358,4 +326,4 @@ export default function ChatBot() {
       )}
     </div>
   )
-} 
+}

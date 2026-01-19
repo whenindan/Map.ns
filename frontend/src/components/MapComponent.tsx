@@ -26,7 +26,7 @@ export default function MapComponent({ markers, onMarkerClick }: MapComponentPro
     // Initialize map
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/streets-v12',
+      style: 'mapbox://styles/mapbox/dark-v11',
       center: [105.8, 10.2],
       zoom: 7
     })
@@ -67,7 +67,7 @@ export default function MapComponent({ markers, onMarkerClick }: MapComponentPro
   }, [markers, onMarkerClick])
 
   return (
-    <div 
+    <div
       ref={mapContainer}
       className="w-full h-full"
       style={{ width: '100%', height: '100%' }}
