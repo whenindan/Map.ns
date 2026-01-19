@@ -203,14 +203,13 @@ export default function ChatBot() {
                   {message.type !== 'user' && (
                     <div style={{
                       marginRight: '8px',
-                      marginTop: '2px',
+                      marginTop: '8px',
                       width: '6px',
                       height: '6px',
                       backgroundColor: message.type === 'bot' ? '#ffffff' : '#666666',
                       borderRadius: '50%',
                       flexShrink: 0,
-                      alignSelf: 'flex-start',
-                      marginTop: '8px'
+                      alignSelf: 'flex-start'
                     }}>
                     </div>
                   )}
@@ -239,14 +238,13 @@ export default function ChatBot() {
                   {message.type === 'user' && (
                     <div style={{
                       marginLeft: '8px',
-                      marginTop: '2px',
+                      marginTop: '8px',
                       width: '6px',
                       height: '6px',
                       backgroundColor: '#ffffff',
                       borderRadius: '50%',
                       flexShrink: 0,
-                      alignSelf: 'flex-start',
-                      marginTop: '8px'
+                      alignSelf: 'flex-start'
                     }}>
                     </div>
                   )}
